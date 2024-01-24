@@ -17,7 +17,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
-{    
+{
     /**
      * index
      *
@@ -41,7 +41,7 @@ class PostController extends Controller
     {
         return view('posts.create');
     }
- 
+
     /**
      * store
      *
@@ -52,26 +52,46 @@ class PostController extends Controller
     {
         //validate form
         $this->validate($request, [
-            'image'     => 'required|image|mimes:jpeg,jpg,png|max:2048',
-            'title'     => 'required|min:5',
-            'content'   => 'required|min:10'
+            'nisn'     => 'required',
+            'skhun'     => 'required',
+            'no_ijazah'   => 'required',
+            'nama_lengkap'     => 'required',
+            'tanggal_lahir'     => 'required',
+            'agama'   => 'required',
+            'alamat'     => 'required',
+            'jenis_kelamin'     => 'required',
+            'no_telp'   => 'required',
+            'email'     => 'required',
+            'jurusan'   => 'required',
+            'nama_ayah' => 'required',
+            'nama_ibu'  => 'required',
+            'nama_wali' => 'required',
+
         ]);
 
-        //upload image
-        $image = $request->file('image');
-        $image->storeAs('public/posts', $image->hashName());
 
         //create post
         Post::create([
-            'image'     => $image->hashName(),
-            'title'     => $request->title,
-            'content'   => $request->content
+            'nisn'     => $request->nisn,
+            'skhun'     => $request->skhun,
+            'no_ijazah'   => $request->no_ijazah,
+            'nama_lengkap'     => $request->nama_lengkap,
+            'tanggal_lahir'     => $request->tanggal_lahir,
+            'agama'   => $request->agama,
+            'alamat'     => $request->alamat,
+            'jenis_kelamin'     => $request->jenis_kelamin,
+            'no_telp'   => $request->no_telp,
+            'email'     => $request->email,
+            'jurusan'   => $request->jurusan,
+            'nama_ayah' => $request->nama_ayah,
+            'nama_ibu'  => $request->nama_ibu,
+            'nama_wali' => $request->nama_wali,
         ]);
 
         //redirect to index
         return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
-    
+
     /**
      * show
      *
@@ -101,7 +121,7 @@ class PostController extends Controller
         //render view with post
         return view('posts.edit', compact('post'));
     }
-        
+
     /**
      * update
      *
@@ -113,39 +133,43 @@ class PostController extends Controller
     {
         //validate form
         $this->validate($request, [
-            'image'     => 'image|mimes:jpeg,jpg,png|max:2048',
-            'title'     => 'required|min:5',
-            'content'   => 'required|min:10'
+            'nisn'     => 'required',
+            'skhun'     => 'required',
+            'no_ijazah'   => 'required',
+            'nama_lengkap'     => 'required',
+            'tanggal_lahir'     => 'required',
+            'agama'   => 'required',
+            'alamat'     => 'required',
+            'jenis_kelamin'     => 'required',
+            'no_telp'   => 'required',
+            'email'     => 'required',
+            'jurusan'   => 'required',
+            'nama_ayah' => 'required',
+            'nama_ibu'  => 'required',
+            'nama_wali' => 'required',
         ]);
 
         //get post by ID
         $post = Post::findOrFail($id);
 
-        //check if image is uploaded
-        if ($request->hasFile('image')) {
 
-            //upload new image
-            $image = $request->file('image');
-            $image->storeAs('public/posts', $image->hashName());
-
-            //delete old image
-            Storage::delete('public/posts/'.$post->image);
-
-            //update post with new image
             $post->update([
-                'image'     => $image->hashName(),
-                'title'     => $request->title,
-                'content'   => $request->content
+            'nisn'     => $request->nisn,
+            'skhun'     => $request->skhun,
+            'no_ijazah'   => $request->no_ijazah,
+            'nama_lengkap'     => $request->nama_lengkap,
+            'tanggal_lahir'     => $request->tanggal_lahir,
+            'agama'   => $request->agama,
+            'alamat'     => $request->alamat,
+            'jenis_kelamin'     => $request->jenis_kelamin,
+            'no_telp'   => $request->no_telp,
+            'email'     => $request->email,
+            'jurusan'   => $request->jurusan,
+            'nama_ayah' => $request->nama_ayah,
+            'nama_ibu'  => $request->nama_ibu,
+            'nama_wali' => $request->nama_wali,
             ]);
 
-        } else {
-
-            //update post without image
-            $post->update([
-                'title'     => $request->title,
-                'content'   => $request->content
-            ]);
-        }
 
         //redirect to index
         return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Diubah!']);
@@ -161,9 +185,6 @@ class PostController extends Controller
     {
         //get post by ID
         $post = Post::findOrFail($id);
-
-        //delete image
-        Storage::delete('public/posts/'. $post->image);
 
         //delete post
         $post->delete();

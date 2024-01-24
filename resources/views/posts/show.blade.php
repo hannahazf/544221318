@@ -14,18 +14,27 @@
             <div class="col-md-8">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <img src="{{ asset('storage/posts/'.$post->image) }}" class="w-100 rounded">
                         <hr>
-                        <h4>{{ $post->title }}</h4>
-                        <p class="tmt-3">
-                            {!! $post->content !!}
-                        </p>
+                        <p>{{ $post->nisn }}</p>
+                        <p>{{ $post->skhun }}</p>
+                        <p>{{ $post->no_ijazah }}</p>
+                        <p>{{ $post->nama_lengkap }}</p>
+                        <p>{{ $post->tanggal_lahir }}</p>
+                        <p>{{ $post->agama }}</p>
+                        <p>{{ $post->alamat }}</p>
+                        <p>{{ $post->jenis_kelamin }}</p>
+                        <p>{{ $post->no_telp }}</p>
+                        <p>{{ $post->email }}</p>
+                        <p>{{ $post->jurusan }}</p>
+                        <p>{{ $post->nama_ayah }}</p>
+                        <p>{{ $post->nama_ibu }}</p>
+                        <p>{{ $post->nama_wali }}</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>

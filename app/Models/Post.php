@@ -15,8 +15,6 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'image',
-        'title',
-        'content',
+        'nisn', 'skhun', 'no_ijazah', 'nama_lengkap', 'tanggal_lahir', 'agama', 'alamat', 'jenis_kelamin', 'no_telp', 'email', 'jurusan', 'nama_ayah', 'nama_ibu', 'nama_wali'
     ];
 }
